@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Polliza de Los Lugo's | El Sabor Que Se Arma en Grande</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #C8001A;
+    --rojo-oscuro: #8B0012;
+    --rojo-vivo: #FF0022;
+    --amarillo: #FFD000;
+    --amarillo-oscuro: #E5A800;
+    --negro: #0A0A0A;
+    --negro-suave: #1A1A1A;
+    --blanco: #FFFFFF;
+    --gris: #F5F5F5;
+    --humo: #222222;
+    --naranja: #FF6B00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--negro); }
+  ::-webkit-scrollbar-thumb { background: var(--rojo); border-radius: 3px; }
+
+  /* ─── NAVBAR ─── */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 2px solid var(--rojo);
+    transition: all 0.3s;
+  }
+
+  .navbar.scrolled {
+    height: 58px;
+    background: rgba(10,10,10,0.98);
+    box-shadow: 0 4px 30px rgba(200,0,26,0.3);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px; height: 42px;
+    background: var(--rojo);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    animation: pulse-logo 2.5s infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--blanco);
+    letter-spacing: 0;
+    font-size: 18px;
+  }
+
+  @keyframes pulse-logo {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200,0,26,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(200,0,26,0); }
+  }
+
+  .nav-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--blanco);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .nav-logo-text span { color: var(--amarillo); }
+
+  .nav-links {
+    display: flex; gap: 30px; list-style: none; align-items: center;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 2px; background: var(--amarillo);
+    transform: scaleX(0); transition: transform 0.2s;
+    transform-origin: left;
+  }
+
+  .nav-links a:hover { color: var(--amarillo); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--rojo);
+    color: var(--blanco) !important;
+    padding: 9px 22px !important;
+    border-radius: 4px;
+    font-weight: 800 !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--rojo-vivo) !important; transform: scale(1.05); }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 5px;
+  }
+
+  .hamburger span {
+    width: 26px; height: 2px;
+    background: var(--blanco); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 70px; left: 0; right: 0; z-index: 999;
+    background: rgba(10,10,10,0.97);
+    padding: 20px 5%;
+    border-bottom: 2px solid var(--rojo);
+    flex-direction: column; gap: 5px;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    color: var(--blanco); text-decoration: none;
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--amarillo); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 60% 50%, rgba(200,0,26,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 70%, rgba(255,107,0,0.15) 0%, transparent 50%),
+      linear-gradient(135deg, #0A0A0A 0%, #1a0000 40%, #0A0A0A 100%);
+  }
+
+  .hero-embers {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: hidden;
+  }
+
+  .ember {
+    position: absolute; border-radius: 50%;
+    animation: float-ember linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float-ember {
+    0% { transform: translateY(110vh) scale(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    80% { opacity: 0.6; }
+    100% { transform: translateY(-10vh) scale(1.5) rotate(360deg); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    max-width: 1200px; width: 90%; margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,0,26,0.2);
+    border: 1px solid var(--rojo);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '🔥'; font-size: 0.85rem;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    animation: fadeInLeft 0.9s ease 0.1s both;
+  }
+
+  .hero-title .brand {
+    display: block;
+    background: linear-gradient(135deg, var(--amarillo) 0%, var(--naranja) 50%, var(--rojo-vivo) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px rgba(255,208,0,0.4));
+  }
+
+  .hero-title .los {
+    display: block; color: var(--blanco); font-size: 55%;
+    letter-spacing: 8px;
+  }
+
+  .hero-title .lugos {
+    display: block;
+    color: var(--blanco);
+    text-shadow: 0 0 40px rgba(200,0,26,0.6);
+  }
+
+  .hero-tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.25rem);
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: fadeInLeft 0.9s ease 0.25s both;
+  }
+
+  .hero-tagline strong { color: var(--amarillo); }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+    animation: fadeInLeft 0.9s ease 0.35s both;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeInLeft 0.9s ease 0.45s both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--rojo) 0%, #ff1a33 100%);
+    color: var(--blanco);
+    padding: 15px 34px;
+    border-radius: 6px;
+    font-weight: 800; font-size: 0.85rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 30px rgba(200,0,26,0.45);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(200,0,26,0.6);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent;
+    color: var(--blanco);
+    padding: 15px 30px;
+    border-radius: 6px;
+    font-weight: 800; font-size: 0.85rem;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--amarillo);
+    color: var(--amarillo);
+    transform: translateY(-3px);
+  }
+
+  .hero-image-wrap {
+    position: relative;
+    animation: fadeInRight 1s ease 0.2s both;
+  }
+
+  .hero-img-plate {
+    width: 100%; max-width: 560px;
+    border-radius: 20px;
+    object-fit: cover;
+    filter: drop-shadow(0 20px 60px rgba(200,0,26,0.5));
+    animation: float-plate 4s ease-in-out infinite;
+  }
+
+  @keyframes float-plate {
+    0%, 100% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-18px) rotate(1deg); }
+  }
+
+  .hero-img-glow {
+    position: absolute; inset: -20px;
+    background: radial-gradient(ellipse at center, rgba(200,0,26,0.3) 0%, transparent 70%);
+    z-index: -1; border-radius: 50%;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+
+  .hero-stats {
+    position: absolute; bottom: 40px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 0;
+    z-index: 2;
+  }
+
+  .hero-stat {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 14px 36px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem; color: var(--amarillo);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 90px 5%; }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1; letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .section-title span { color: var(--rojo); }
+
+  .section-subtitle {
+    font-size: 0.95rem; color: rgba(255,255,255,0.55);
+    max-width: 560px; line-height: 1.7;
+  }
+
+  .section-header { margin-bottom: 56px; }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: var(--negro-suave);
+    position: relative; overflow: hidden;
+  }
+
+  .about::before {
+    content: 'LUGO\'S';
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15rem; opacity: 0.03;
+    color: var(--rojo); pointer-events: none;
+    letter-spacing: 10px;
+  }
+
+  .about-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+  }
+
+  .about-img-main {
+    width: 100%; border-radius: 16px;
+    object-fit: cover; height: 420px;
+    filter: brightness(0.9) saturate(1.2);
+    transition: transform 0.4s, filter 0.4s;
+  }
+
+  .about-img-main:hover {
+    transform: scale(1.02);
+    filter: brightness(1) saturate(1.4);
+  }
+
+  .about-img-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--rojo);
+    border: 4px solid var(--negro-suave);
+    border-radius: 50%; width: 120px; height: 120px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    animation: spin-badge 15s linear infinite;
+  }
+
+  .about-img-badge .big { font-size: 2.2rem; color: var(--amarillo); line-height: 1; }
+  .about-img-badge .small { font-size: 0.55rem; letter-spacing: 2px; color: var(--blanco); }
+
+  @keyframes spin-badge {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .about-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 36px;
+  }
+
+  .about-feat {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px;
+    background: rgba(200,0,26,0.08);
+    border: 1px solid rgba(200,0,26,0.2);
+    border-radius: 8px;
+    font-size: 0.8rem; font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .about-feat:hover {
+    background: rgba(200,0,26,0.18);
+    border-color: var(--rojo);
+    transform: translateX(4px);
+  }
+
+  .about-feat-icon { font-size: 1.3rem; }
+
+  /* ─── PRODUCTS ─── */
+  .products {
+    background: var(--negro);
+    position: relative;
+  }
+
+  .products-header-wrap {
+    max-width: 1200px; margin: 0 auto 56px;
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+
+  .products-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card {
+    background: var(--negro-suave);
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,0,26,0.08) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s; z-index: 1;
+  }
+
+  .product-card:hover {
+    transform: translateY(-10px) scale(1.01);
+    border-color: var(--rojo);
+    box-shadow: 0 20px 60px rgba(200,0,26,0.3);
+  }
+
+  .product-card:hover::before { opacity: 1; }
+
+  .product-img-wrap {
+    position: relative; overflow: hidden; height: 200px;
+  }
+
+  .product-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-img { transform: scale(1.1); }
+
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 50%);
+  }
+
+  .product-tag {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--rojo);
+    padding: 4px 12px; border-radius: 100px;
+    font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .product-body {
+    padding: 20px 22px 22px;
+    position: relative; z-index: 2;
+  }
+
+  .product-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.35rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+
+  .product-card:hover .product-name { color: var(--amarillo); }
+
+  .product-desc {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    line-height: 1.6; margin-bottom: 16px;
+  }
+
+  .product-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; color: var(--amarillo);
+    letter-spacing: 1px;
+  }
+
+  .product-price sup {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem; font-weight: 800;
+    vertical-align: super; color: var(--naranja);
+  }
+
+  /* ─── PROMOS ─── */
+  .promos {
+    background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--negro) 40%, var(--negro) 100%);
+    position: relative; overflow: hidden;
+  }
+
+  .promos::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(200,0,26,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,107,0,0.1) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .promos-wrap {
+    max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .promos-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .promo-card {
+    border-radius: 16px; overflow: hidden;
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: all 0.3s;
+  }
+
+  .promo-card:first-child {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(200,0,26,0.2) 0%, rgba(255,107,0,0.1) 100%);
+    border-color: rgba(200,0,26,0.3);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 30px; align-items: center;
+    padding: 40px 46px;
+  }
+
+  .promo-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--rojo);
+    box-shadow: 0 16px 50px rgba(200,0,26,0.25);
+  }
+
+  .promo-day {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--amarillo);
+    background: rgba(255,208,0,0.1);
+    border: 1px solid rgba(255,208,0,0.3);
+    border-radius: 100px; padding: 5px 14px;
+    margin-bottom: 6px;
+  }
+
+  .promo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1; letter-spacing: 2px;
+    color: var(--blanco);
+  }
+
+  .promo-sub {
+    font-size: 0.8rem; color: rgba(255,255,255,0.6);
+    font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .promo-price-wrap {
+    text-align: center;
+  }
+
+  .promo-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; color: var(--amarillo);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(255,208,0,0.4);
+  }
+
+  .promo-price-label {
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .promo-tag-valid {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    padding: 6px 16px; border-radius: 4px;
+    font-size: 0.7rem; font-weight: 900;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery {
+    background: var(--negro-suave);
+    overflow: hidden;
+  }
+
+  .gallery-inner { max-width: 1200px; margin: 0 auto; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 14px;
+  }
+
+  .gallery-item {
+    border-radius: 12px; overflow: hidden;
+    position: relative; cursor: pointer;
+  }
+
+  .gallery-item:first-child { grid-row: 1 / 3; }
+
+  .gallery-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s, filter 0.3s;
+    filter: brightness(0.85);
+  }
+
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.08);
+    filter: brightness(1) saturate(1.3);
+  }
+
+  .gallery-item-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end;
+    padding: 20px;
+  }
+
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+  .gallery-item-overlay span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--amarillo);
+  }
+
+  /* ─── BRANCHES ─── */
+  .branches {
+    background: var(--negro);
+  }
+
+  .branches-inner { max-width: 1200px; margin: 0 auto; }
+
+  .branches-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .branch-card {
+    padding: 28px 30px;
+    background: var(--negro-suave);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .branch-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--rojo);
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .branch-card:hover {
+    border-color: rgba(200,0,26,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(200,0,26,0.2);
+  }
+
+  .branch-card:hover::before { transform: scaleY(1); }
+
+  .branch-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: rgba(200,0,26,0.12);
+    line-height: 1; position: absolute; right: 20px; top: 14px;
+    letter-spacing: 2px;
+  }
+
+  .branch-icon {
+    font-size: 1.6rem; margin-bottom: 12px;
+  }
+
+  .branch-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--amarillo); margin-bottom: 8px;
+  }
+
+  .branch-address {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  .branch-hours {
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.75rem; color: rgba(255,255,255,0.4);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── DELIVERY ─── */
+  .delivery {
+    background: linear-gradient(135deg, var(--negro-suave) 0%, var(--negro) 100%);
+    text-align: center;
+  }
+
+  .delivery-inner { max-width: 900px; margin: 0 auto; }
+
+  .delivery-label {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    padding: 8px 28px; border-radius: 100px;
+    font-size: 0.7rem; font-weight: 900;
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 26px;
+  }
+
+  .delivery-platforms {
+    display: flex; justify-content: center; gap: 24px;
+    flex-wrap: wrap; margin-top: 42px;
+  }
+
+  .platform-btn {
+    display: flex; align-items: center; gap: 12px;
+    padding: 18px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800; font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: all 0.25s;
+    border: 2px solid;
+    min-width: 190px;
+    justify-content: center;
+  }
+
+  .platform-btn.uber {
+    background: var(--negro);
+    border-color: var(--blanco);
+    color: var(--blanco);
+  }
+
+  .platform-btn.uber:hover {
+    background: var(--blanco);
+    color: var(--negro);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+  }
+
+  .platform-btn.didi {
+    background: var(--negro);
+    border-color: #FF6B35;
+    color: #FF6B35;
+  }
+
+  .platform-btn.didi:hover {
+    background: #FF6B35;
+    color: var(--blanco);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+  }
+
+  .platform-btn.rappi {
+    background: var(--negro);
+    border-color: #FF441B;
+    color: #FF441B;
+  }
+
+  .platform-btn.rappi:hover {
+    background: #FF441B;
+    color: var(--blanco);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(255,68,27,0.3);
+  }
+
+  .platform-icon { font-size: 1.5rem; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    background: var(--negro-suave);
+    overflow: hidden;
+  }
+
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+
+  .testimonials-track {
+    display: flex; gap: 20px;
+    overflow-x: auto; padding-bottom: 10px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testimonials-track::-webkit-scrollbar { display: none; }
+
+  .testi-card {
+    flex: 0 0 320px;
+    padding: 28px 28px 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    transition: all 0.3s;
+  }
+
+  .testi-card:hover {
+    border-color: rgba(200,0,26,0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(200,0,26,0.15);
+  }
+
+  .testi-stars { color: var(--amarillo); font-size: 0.9rem; margin-bottom: 14px; }
+
+  .testi-text {
+    font-size: 0.88rem; color: rgba(255,255,255,0.7);
+    line-height: 1.7; margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testi-author {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rojo), var(--naranja));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .testi-name { font-weight: 800; font-size: 0.85rem; }
+  .testi-role { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(200,0,26,0.3);
+    padding: 70px 5% 30px;
+  }
+
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px; margin-bottom: 60px;
+  }
+
+  .footer-brand-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; letter-spacing: 2px;
+    color: var(--blanco); margin-bottom: 14px;
+  }
+
+  .footer-brand-logo span { color: var(--rojo); }
+
+  .footer-tagline {
+    font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    line-height: 1.7; margin-bottom: 26px; max-width: 300px;
+  }
+
+  .footer-socials {
+    display: flex; gap: 10px;
+  }
+
+  .footer-social {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .footer-social:hover {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    transform: translateY(-3px);
+  }
+
+  .footer-col-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--amarillo); margin-bottom: 20px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-links a {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45);
+    text-decoration: none; transition: color 0.2s;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .footer-links a:hover { color: var(--blanco); }
+
+  .footer-hours p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45);
+    line-height: 1.9; margin-bottom: 4px;
+  }
+
+  .footer-hours strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem; color: rgba(255,255,255,0.3);
+  }
+
+  .footer-copy span { color: var(--rojo); }
+
+  .footer-made {
+    font-size: 0.72rem; color: rgba(255,255,255,0.25);
+  }
+
+  /* ─── FIRE BANNER ─── */
+  .fire-banner {
+    background: linear-gradient(90deg, var(--rojo) 0%, var(--naranja) 50%, var(--rojo) 100%);
+    padding: 14px 0; overflow: hidden;
+    position: relative;
+  }
+
+  .fire-banner-track {
+    display: flex; animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+
+  .fire-banner-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem; letter-spacing: 4px;
+    padding: 0 40px; color: var(--blanco);
+    opacity: 0.9;
+  }
+
+  .fire-banner-item span { color: var(--amarillo); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  /* ══ TABLET (≤960px) ══ */
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 32px;
+      padding-top: 20px;
+    }
+    .hero-image-wrap { order: -1; }
+    .hero-img-plate { max-width: 320px; margin: 0 auto; display: block; }
+    .hero-buttons { justify-content: center; }
+    .hero-stats {
+      position: static;
+      margin-top: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 10px 0;
+    }
+    .hero-badge { margin: 0 auto 16px; }
+    .hero-desc { margin: 0 auto 28px; text-align: center; }
+    .hero-tagline { text-align: center; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-img-wrap { display: none; }
+    .about-features { grid-template-columns: 1fr 1fr; }
+
+    .promos-grid { grid-template-columns: 1fr; gap: 18px; }
+    .promo-card:first-child {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 20px;
+      padding: 32px 28px;
+    }
+    .promo-price-wrap { text-align: center; }
+
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px 200px;
+    }
+    .gallery-item:first-child { grid-column: 1 / -1; grid-row: auto; }
+
+    .branches-grid { grid-template-columns: 1fr 1fr; }
+
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  }
+
+  /* ══ MOBILE (≤600px) ══ */
+  @media (max-width: 600px) {
+    section { padding: 56px 4%; }
+
+    /* Hero */
+    .hero { min-height: auto; padding: 100px 4% 60px; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-title .los { letter-spacing: 4px; }
+    .hero-img-plate { max-width: 280px; }
+    .hero-img-glow { display: none; }
+    .hero-stats { flex-wrap: wrap; }
+    .hero-stat {
+      flex: 1 1 45%;
+      padding: 12px 10px;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.07); }
+    .hero-stat-num { font-size: 1.7rem; }
+    .hero-stat-label { font-size: 0.6rem; }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      justify-content: center;
+      padding: 14px 20px;
+    }
+    .hero-buttons { flex-direction: column; gap: 10px; }
+
+    /* Section headers */
+    .section-title { font-size: 2.2rem; }
+    .section-eyebrow { font-size: 0.6rem; }
+    .section-subtitle { font-size: 0.88rem; }
+
+    /* About */
+    .about-features { grid-template-columns: 1fr; gap: 10px; }
+
+    /* Products */
+    .products-grid { grid-template-columns: 1fr; gap: 16px; }
+    .products-header-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .products-header-wrap .section-subtitle { text-align: left !important; }
+
+    /* Promos */
+    .promo-card { padding: 24px 20px; }
+    .promo-price { font-size: 3.5rem; }
+    .promo-name { font-size: 2rem; }
+
+    /* Gallery */
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 140px);
+    }
+    .gallery-item:first-child { grid-column: 1 / -1; height: 200px; }
+
+    /* Branches */
+    .branches-grid { grid-template-columns: 1fr; gap: 14px; }
+    .branch-card { padding: 22px 20px; }
+    .branch-num { font-size: 2.8rem; }
+
+    /* Delivery */
+    .delivery-platforms {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      padding: 0 4px;
+    }
+    .platform-btn {
+      width: 100%;
+      max-width: 100%;
+      padding: 16px 24px;
+      justify-content: flex-start;
+      gap: 16px;
+    }
+
+    /* Testimonials */
+    .testi-card { flex: 0 0 280px; padding: 22px 20px; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-brand-logo { font-size: 2rem; }
+    footer { padding: 50px 4% 24px; }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    /* Fire banner */
+    .fire-banner-item { font-size: 0.9rem; padding: 0 26px; }
+
+    /* Back to top */
+    .back-top { bottom: 18px; right: 16px; width: 42px; height: 42px; }
+
+    /* Promo personal box */
+    .promo-personal-flex {
+      flex-direction: column !important;
+      gap: 20px !important;
+    }
+  }
+
+  /* ══ TINY PHONES (≤380px) ══ */
+  @media (max-width: 380px) {
+    .hero-title { font-size: 2.4rem; }
+    .hero-img-plate { max-width: 240px; }
+    .nav-logo-text { font-size: 1.05rem; }
+    .section-title { font-size: 1.9rem; }
+    .promo-price { font-size: 3rem; }
+  }
+
+  /* ─── FIRE DIVIDER ─── */
+  .fire-divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, var(--rojo) 30%, var(--amarillo) 50%, var(--rojo) 70%, transparent 100%);
+    position: relative;
+  }
+
+  /* ─── BACK TO TOP ─── */
+  .back-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 800;
+    width: 48px; height: 48px;
+    background: var(--rojo);
+    border-radius: 50%; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--blanco);
+    box-shadow: 0 4px 20px rgba(200,0,26,0.5);
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .back-top.show { opacity: 1; transform: translateY(0); }
+  .back-top:hover { transform: translateY(-4px); background: var(--rojo-vivo); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">PL</div>
+    <div class="nav-logo-text">La Polliza <br><span>de Los Lugo's</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#promos">Promos</a></li>
+    <li><a href="#sucursales">Sucursales</a></li>
+    <li><a href="#delivery" class="nav-cta">Pedir Ahora</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="closeMob()">Nosotros</a>
+  <a href="#menu" onclick="closeMob()">Menú</a>
+  <a href="#promos" onclick="closeMob()">Promos</a>
+  <a href="#sucursales" onclick="closeMob()">Sucursales</a>
+  <a href="#delivery" onclick="closeMob()">Pedir Ahora</a>
+</div>
+
+<!-- EMBER PARTICLES -->
+<div class="hero-embers" id="embers"></div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">Sabor auténtico desde Culiacán</div>
+      <h1 class="hero-title">
+        <span class="los">La Polliza De</span>
+        <span class="brand">Los</span>
+        <span class="lugos">Lugo's</span>
+      </h1>
+      <p class="hero-tagline"><strong>El sabor</strong> que se arma en grande</p>
+      <p class="hero-desc">
+        Pollo asado, boneless, alitas y mucho más. Preparados al momento con los mejores ingredientes para que cada bocado sea una experiencia que no olvidarás.
+      </p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn-primary">🍗 Ver Menú</a>
+        <a href="#sucursales" class="btn-secondary">📍 Sucursales</a>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-img-glow"></div>
+      <img
+        src="https://images.unsplash.com/photo-1598103442097-8b74394b95c8?w=600&q=80"
+        alt="Pollo asado La Polliza"
+        class="hero-img-plate"
+        onerror="this.src='https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&q=80'"
+      />
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">5+</div><div class="hero-stat-label">Sucursales</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">Años</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Plataformas</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">★ 5</div><div class="hero-stat-label">Calificación</div></div>
+  </div>
+</section>
+
+<!-- FIRE BANNER -->
+<div class="fire-banner">
+  <div class="fire-banner-track">
+    <span class="fire-banner-item">🔥 VIERNES DE PROMO <span>$120</span></span>
+    <span class="fire-banner-item">🍗 POLLO DESHUESADO</span>
+    <span class="fire-banner-item">🌶️ BONELESS EXPLOSIVOS</span>
+    <span class="fire-banner-item">🏆 EL SABOR QUE SE ARMA EN GRANDE</span>
+    <span class="fire-banner-item">📍 5 SUCURSALES EN LA CIUDAD</span>
+    <span class="fire-banner-item">🔥 VIERNES DE PROMO <span>$120</span></span>
+    <span class="fire-banner-item">🍗 POLLO DESHUESADO</span>
+    <span class="fire-banner-item">🌶️ BONELESS EXPLOSIVOS</span>
+    <span class="fire-banner-item">🏆 EL SABOR QUE SE ARMA EN GRANDE</span>
+    <span class="fire-banner-item">📍 5 SUCURSALES EN LA CIUDAD</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="nosotros">
+  <div class="about-grid reveal">
+    <div class="about-img-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80"
+        alt="Cocina Lugo's"
+        class="about-img-main"
+        onerror="this.src='https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=600&q=80'"
+      />
+      <div class="about-img-badge">
+        <span class="big">10+</span>
+        <span class="small">AÑOS</span>
+      </div>
+    </div>
+    <div>
+      <span class="section-eyebrow">Quiénes Somos</span>
+      <h2 class="section-title">El sabor que <span>conquista</span> Culiacán</h2>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:24px;">
+        Somos <strong style="color:var(--amarillo)">La Polliza de Los Lugo's</strong>, una familia con más de una década de tradición en pollo asado. Nacimos con la pasión de ofrecer sabores auténticos, porciones generosas y precios justos para toda la familia.
+      </p>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:32px;">
+        Hoy contamos con <strong style="color:var(--blanco)">5 sucursales</strong> en la ciudad, presencia en las principales plataformas de delivery y un equipo dedicado a que cada visita sea inolvidable.
+      </p>
+      <div class="about-features">
+        <div class="about-feat"><span class="about-feat-icon">🔥</span> Pollo artesanal</div>
+        <div class="about-feat"><span class="about-feat-icon">🌿</span> Ingredientes frescos</div>
+        <div class="about-feat"><span class="about-feat-icon">💰</span> Precios accesibles</div>
+        <div class="about-feat"><span class="about-feat-icon">📦</span> Delivery rápido</div>
+        <div class="about-feat"><span class="about-feat-icon">👨‍👩‍👧</span> Porciones familiares</div>
+        <div class="about-feat"><span class="about-feat-icon">⭐</span> Atención de lujo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fire-divider"></div>
+
+<!-- ── PRODUCTS ── -->
+<section class="products" id="menu">
+  <div class="products-header-wrap reveal">
+    <div>
+      <span class="section-eyebrow">Nuestro Menú</span>
+      <h2 class="section-title">Lo que <span>más amamos</span></h2>
+    </div>
+    <p class="section-subtitle" style="text-align:right;">Cada platillo preparado con la pasión y sazón que nos caracteriza</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c8?w=500&q=80"
+          alt="Pollo Asado" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">⭐ Estrella</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Pollo Asado</div>
+        <p class="product-desc">Marinado en especias secretas, asado lentamente hasta lograr la costra perfecta. Jugoso por dentro, crujiente por fuera.</p>
+        <div class="product-price"><sup>$</sup>105 – 280</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=500&q=80"
+          alt="Boneless" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">🌶️ Favorito</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Boneless</div>
+        <p class="product-desc">Trozos tiernos sin hueso bañados en nuestra salsa explosiva. Disponibles en diferentes niveles de picor.</p>
+        <div class="product-price"><sup>$</sup>Desde 90</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=500&q=80"
+          alt="Alitas" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1608039755401-742074f0548d?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">🔥 Hot</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Alitas</div>
+        <p class="product-desc">Crujientes y sabrosas, disponibles en salsa BBQ, picante, mango habanero y más. Perfectas para compartir.</p>
+        <div class="product-price"><sup>$</sup>Desde 80</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500&q=80"
+          alt="Papas Preparadas" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">🥔 Promo</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Papa Con Carne</div>
+        <p class="product-desc">Papa generosamente cargada con carne asada, crema, cebolla morada, cebollín y queso. Cada vez que la pruebes querrás más.</p>
+        <div class="product-price"><sup>$</sup>120</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80"
+          alt="Chilaquiles" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">🧀 Para Compartir</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Chilaquiles</div>
+        <p class="product-desc">Para compartir en grande. Chilaquiles con pollo asado, crema, queso, aguacate y cebolla. Una fiesta de sabores en un solo plato.</p>
+        <div class="product-price"><sup>$</sup>200</div>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80"
+          alt="Combo Familiar" class="product-img"
+          onerror="this.src='https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=500&q=80'">
+        <div class="product-overlay"></div>
+        <span class="product-tag">👨‍👩‍👧 Familia</span>
+      </div>
+      <div class="product-body">
+        <div class="product-name">Combos Familiares</div>
+        <p class="product-desc">La combinación perfecta para toda la familia. Pollo entero o en piezas con guarniciones incluidas y tortillas recién hechas.</p>
+        <div class="product-price"><sup>$</sup>Desde 280</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="fire-divider"></div>
+
+<!-- ── PROMOS ── -->
+<section class="promos" id="promos">
+  <div class="promos-wrap">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Promociones Especiales</span>
+      <h2 class="section-title">Ofertas que <span>se arman</span></h2>
+      <p class="section-subtitle">Visítanos en los días de promo y aprovecha nuestros precios especiales</p>
+    </div>
+
+    <div class="promos-grid">
+      <!-- Big Promo -->
+      <div class="promo-card reveal">
+        <div>
+          <div class="promo-day">🔥 Martes de Promo</div>
+          <div class="promo-name">Pollo<br>Deshuesado</div>
+          <p class="promo-sub">Incluye Guarniciones · 9:00 AM – 12:30 PM</p>
+          <span class="promo-tag-valid">Válido en todas las sucursales</span>
+        </div>
+        <div class="promo-price-wrap">
+          <div class="promo-price">$280</div>
+          <div class="promo-price-label">Precio especial</div>
+        </div>
+      </div>
+
+      <div class="promo-card reveal">
+        <div class="promo-day">🍟 Viernes de Promo</div>
+        <div class="promo-name">Papa<br>Con Carne</div>
+        <p class="promo-sub">Llena · Crema · Cebollín · Queso</p>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--amarillo);line-height:1;">$120</div>
+        <span class="promo-tag-valid">Solo viernes</span>
+      </div>
+
+      <div class="promo-card reveal">
+        <div class="promo-day">🌮 Viernes de Promo</div>
+        <div class="promo-name">Torta de<br>Pollo o Carne</div>
+        <p class="promo-sub">Tu elección · Bien armada</p>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--amarillo);line-height:1;">$120</div>
+        <span class="promo-tag-valid">Solo viernes</span>
+      </div>
+
+      <div class="promo-card reveal">
+        <div class="promo-day">🥣 Viernes de Promo</div>
+        <div class="promo-name">Chilaquiles<br>Para Compartir</div>
+        <p class="promo-sub">Con pollo asado · Para 2 personas</p>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--amarillo);line-height:1;">$200</div>
+        <span class="promo-tag-valid">Solo viernes</span>
+      </div>
+    </div>
+
+    <!-- Promo Personal Box -->
+    <div style="margin-top:28px;padding:32px 36px;background:rgba(255,208,0,0.07);border:1px solid rgba(255,208,0,0.25);border-radius:16px;" class="reveal">
+      <div class="promo-personal-flex" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;">
+        <div>
+          <div class="promo-day" style="margin-bottom:8px;">🏠 Promo Personal – Viernes</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:2px;">PROMO PERSONAL</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:4px;">Válido en todas las sucursales</div>
+        </div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <div style="text-align:center;padding:20px 30px;background:rgba(200,0,26,0.15);border:2px solid var(--rojo);border-radius:12px;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--amarillo);line-height:1;">$105</div>
+            <div style="font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;">De Pollo</div>
+          </div>
+          <div style="text-align:center;padding:20px 30px;background:rgba(200,0,26,0.15);border:2px solid var(--rojo);border-radius:12px;">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--amarillo);line-height:1;">$115</div>
+            <div style="font-size:0.7rem;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;">De Carne</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="fire-divider"></div>
+
+<!-- ── GALLERY ── -->
+<section class="gallery">
+  <div class="gallery-inner">
+    <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-eyebrow">Galería</span>
+      <h2 class="section-title">Fotos que <span>dan hambre</span></h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c8?w=700&q=80"
+          alt="Pollo asado" class="gallery-img"
+          onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=80'">
+        <div class="gallery-item-overlay"><span>Pollo Asado</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400&q=80"
+          alt="Boneless" class="gallery-img"
+          onerror="this.src='https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=400&q=80'">
+        <div class="gallery-item-overlay"><span>Boneless</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80"
+          alt="Alitas" class="gallery-img"
+          onerror="this.src='https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400&q=80'">
+        <div class="gallery-item-overlay"><span>Alitas</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400&q=80"
+          alt="Papa preparada" class="gallery-img"
+          onerror="this.src='https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&q=80'">
+        <div class="gallery-item-overlay"><span>Papa Con Carne</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80"
+          alt="Combo" class="gallery-img"
+          onerror="this.src='https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=400&q=80'">
+        <div class="gallery-item-overlay"><span>Combo Familiar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRANCHES ── -->
+<section class="branches" id="sucursales">
+  <div class="branches-inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Encuéntranos</span>
+      <h2 class="section-title">Nuestras <span>Sucursales</span></h2>
+      <p class="section-subtitle">5 ubicaciones estratégicas para que siempre tengas tu Polliza cerca</p>
+    </div>
+    <div class="branches-grid">
+      <div class="branch-card reveal">
+        <div class="branch-num">01</div>
+        <div class="branch-icon">📍</div>
+        <div class="branch-name">Hidalgo</div>
+        <div class="branch-address">Calzada Independencia #1810<br>Col. Hidalgo, Culiacán</div>
+        <div class="branch-hours">🕐 Lun – Dom · 9:00 AM – 9:00 PM</div>
+      </div>
+      <div class="branch-card reveal">
+        <div class="branch-num">02</div>
+        <div class="branch-icon">🏭</div>
+        <div class="branch-name">Industrial</div>
+        <div class="branch-address">Calle F #999<br>Col. Industrial, Culiacán</div>
+        <div class="branch-hours">🕐 Lun – Dom · 9:00 AM – 9:00 PM</div>
+      </div>
+      <div class="branch-card reveal">
+        <div class="branch-num">03</div>
+        <div class="branch-icon">🏠</div>
+        <div class="branch-name">Portales</div>
+        <div class="branch-address">Hacienda de los Portales<br>Tercera Sección, Culiacán</div>
+        <div class="branch-hours">🕐 Lun – Dom · 9:00 AM – 9:00 PM</div>
+      </div>
+      <div class="branch-card reveal">
+        <div class="branch-num">04</div>
+        <div class="branch-icon">🌊</div>
+        <div class="branch-name">Río Presidio</div>
+        <div class="branch-address">Río Presidio y Fernando<br>Montes de Oca, Culiacán</div>
+        <div class="branch-hours">🕐 Lun – Dom · 9:00 AM – 9:00 PM</div>
+      </div>
+      <div class="branch-card reveal">
+        <div class="branch-num">05</div>
+        <div class="branch-icon">🌾</div>
+        <div class="branch-name">Alianza para la Producción</div>
+        <div class="branch-address">Bernardo Reyes y Forrajeros<br>Culiacán, Sinaloa</div>
+        <div class="branch-hours">🕐 Lun – Dom · 9:00 AM – 9:00 PM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="fire-divider"></div>
+
+<!-- ── DELIVERY ── -->
+<section class="delivery" id="delivery">
+  <div class="delivery-inner reveal">
+    <div class="delivery-label">📲 Disponible en Plataformas de Delivery</div>
+    <h2 class="section-title" style="text-align:center;">Pídelo <span>desde casa</span></h2>
+    <p style="font-size:0.95rem;color:rgba(255,255,255,0.55);margin:0 auto;max-width:500px;line-height:1.7;text-align:center;">
+      Sin salir de casa. Pide tu Polliza favorita a través de las principales plataformas y recíbela calientita donde estés.
+    </p>
+    <div class="delivery-platforms">
+      <a href="#" class="platform-btn uber">
+        <span class="platform-icon">🚗</span>
+        <div>
+          <div style="font-size:0.65rem;opacity:0.6;letter-spacing:1px;">Ordenar en</div>
+          <div>Uber Eats</div>
+        </div>
+      </a>
+      <a href="#" class="platform-btn didi">
+        <span class="platform-icon">🛵</span>
+        <div>
+          <div style="font-size:0.65rem;opacity:0.6;letter-spacing:1px;">Ordenar en</div>
+          <div>DiDi Food</div>
+        </div>
+      </a>
+      <a href="#" class="platform-btn rappi">
+        <span class="platform-icon">🦊</span>
+        <div>
+          <div style="font-size:0.65rem;opacity:0.6;letter-spacing:1px;">Ordenar en</div>
+          <div>Rappi</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">
+      <span class="section-eyebrow">Opiniones</span>
+      <h2 class="section-title">Lo que dicen <span>nuestros clientes</span></h2>
+    </div>
+    <div class="testimonials-track reveal">
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El mejor pollo asado que he probado en Culiacán, sin exagerar. La costra queda perfecta y la carne super jugosa. Ya voy cada viernes de promo sin falta."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MR</div>
+          <div>
+            <div class="testi-name">Mario Rodríguez</div>
+            <div class="testi-role">Cliente frecuente · Sucursal Hidalgo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Los boneless están increíbles, el nivel de picante es justo y la salsa es adictiva. Lo pedí por Uber Eats y llegó caliente, eso es muy difícil de lograr."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AL</div>
+          <div>
+            <div class="testi-name">Alejandra López</div>
+            <div class="testi-role">Delivery Fan · Rappi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"La papa con carne es espectacular. Llena muchísimo y el precio es buenísimo. Mi familia y yo la pedimos cada vez que no queremos cocinar."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">CF</div>
+          <div>
+            <div class="testi-name">Carlos Félix</div>
+            <div class="testi-role">Cliente familiar · Sucursal Portales</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Los chilaquiles para compartir son una locura. Los probé el viernes de promo y ya los he pedido tres veces más. La porción es generosa y el sabor espectacular."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SV</div>
+          <div>
+            <div class="testi-name">Sofía Valenzuela</div>
+            <div class="testi-role">Superfan · Sucursal Industrial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"El servicio es muy rápido y siempre están de buen humor. El martes de promo con el pollo deshuesado es imposible resistir. Los Lugo's son los mejores del barrio."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JM</div>
+          <div>
+            <div class="testi-name">Jesús Murillo</div>
+            <div class="testi-role">Cliente habitual · Río Presidio</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">La Polliza<br><span>de Los Lugo's</span></div>
+      <p class="footer-tagline">El sabor que se arma en grande. Más de 10 años llevando el mejor pollo asado a las mesas de Culiacán con pasión, sazón y tradición familiar.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social">📘</a>
+        <a href="#" class="footer-social">📸</a>
+        <a href="#" class="footer-social">🎵</a>
+        <a href="#" class="footer-social">▶️</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navegación</div>
+      <ul class="footer-links">
+        <li><a href="#nosotros">→ Nosotros</a></li>
+        <li><a href="#menu">→ Menú</a></li>
+        <li><a href="#promos">→ Promociones</a></li>
+        <li><a href="#sucursales">→ Sucursales</a></li>
+        <li><a href="#delivery">→ Delivery</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Plataformas</div>
+      <ul class="footer-links">
+        <li><a href="#">🚗 Uber Eats</a></li>
+        <li><a href="#">🛵 DiDi Food</a></li>
+        <li><a href="#">🦊 Rappi</a></li>
+      </ul>
+      <div class="footer-col-title" style="margin-top:24px;">Contacto</div>
+      <ul class="footer-links">
+        <li><a href="#">📞 Llámanos</a></li>
+        <li><a href="#">💬 WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="footer-hours">
+      <div class="footer-col-title">Horarios</div>
+      <p><strong>Lunes – Viernes</strong><br>9:00 AM – 9:00 PM</p>
+      <p><strong>Sábado</strong><br>9:00 AM – 8:00 PM</p>
+      <p><strong>Domingo</strong><br>9:00 AM – 6:00 PM</p>
+      <p style="margin-top:12px;color:var(--amarillo);font-size:0.78rem;font-weight:700;">
+        🔥 Martes de Promo 9:00 AM – 12:30 PM
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 La Polliza de Los <span>Lugo's</span>. Todos los derechos reservados.</div>
+    <div class="footer-made">Hecho con 🔥 y mucho sazón · Culiacán, Sinaloa</div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<a href="#inicio" class="back-top" id="backTop">↑</a>
+
+<script>
+  // ─── EMBERS ───
+  const emberContainer = document.getElementById('embers');
+  const colors = ['#FF4500','#FF6B00','#FFD000','#FF1A1A','#FF8C00'];
+
+  for (let i = 0; i < 35; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    const size = Math.random() * 6 + 2;
+    e.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${size}px; height: ${size}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${Math.random() * 8 + 5}s;
+      animation-delay: ${Math.random() * 6}s;
+      box-shadow: 0 0 ${size * 2}px ${colors[Math.floor(Math.random() * colors.length)]};
+    `;
+    emberContainer.appendChild(e);
+  }
+
+  // ─── NAVBAR SCROLL ───
+  const navbar = document.getElementById('navbar');
+  const backTop = document.getElementById('backTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+      backTop.classList.add('show');
+    } else {
+      navbar.classList.remove('scrolled');
+      backTop.classList.remove('show');
+    }
+  });
+
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    const spans = hamburger.querySelectorAll('span');
+    if (menuOpen) {
+      spans[0].style.transform = 'rotate(45deg) translateY(7px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translateY(-7px)';
+    } else {
+      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+  });
+
+  function closeMob() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+
+  // ─── REVEAL ON SCROLL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── SMOOTH ACTIVE NAV ───
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.style.color = '');
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.style.color = 'var(--amarillo)';
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+</body>
+</html>
